@@ -245,23 +245,7 @@ provide some or all the following data points:
  (Optional) Enable Debugging in your User Journey(s)
 ----------------------------------------------------
 
-You can enable debugging tools to help you follow through the each of
-the orchestration steps in the UserJourney and get details on issues
-that occur. This should only be enabled during development.
-
-1.  Open your new policy xml file (not the base.xml one)
-
-2.  Add the following attributes to the &lt;TrustFrameworkPolicy&gt;
-    element:
-
-    1.  DeploymentMode=”Development”
-
-    2.  UserJourneyRecorderEndpoint="https://b2crecorder.azurewebsites.net/stream?id=<guid\>"
-
-        1.  Replace &lt;guid&gt; with an actual GUID
-
-This will allow you to troubleshoot by going to
-https://b2crecorder.azurewebsites.net/trace\_102.html?id=<guid\>
+See https://docs.microsoft.com/en-us/azure/active-directory-b2c/active-directory-b2c-troubleshoot-custom for configuring logs collection through Application Insights.
 
 Policy Reference
 ================
@@ -473,10 +457,10 @@ how to define a relying party:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"  PublicPolicyUri="http://example.com"  PolicySchemaVersion="0.3.0.0"  TenantId="contoso369b2c.onmicrosoft.com"  PolicyId="B2C\_1A\_MsolActive">
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"  PublicPolicyUri="http://example.com"  PolicySchemaVersion="0.3.0.0"  TenantId="contoso369b2c.onmicrosoft.com"  PolicyId="B2C_1A_MsolActive">
   <BasePolicy>
     <TenantId>contoso369b2c.onmicrosoft.com</TenantId>
-    <PolicyId>B2C\_1A\_base-v2</PolicyId>
+    <PolicyId>B2C_1A_base-v2</PolicyId>
   </BasePolicy>
   <RelyingParty>
     <DefaultUserJourney ReferenceId="ActiveRST"/>
@@ -487,24 +471,24 @@ how to define a relying party:
       <SubjectAuthenticationRequirements TimeToLive="4" ResetExpiryWhenTokenIssued="false" />
       <Metadata>
         <Item Key="Saml2AttributeEncodingInfo">
-          <!\[CDATA\[            <saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
+          <![CDATA[            <saml2:AttributeStatement xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion">
             <saml2:Attribute FriendlyName="UserPrincipalName"  Name="IDPEmail"  NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
               <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">                </saml2:AttributeValue>
             </saml2:Attribute>
-          </saml2:AttributeStatement>  \]\]>
+          </saml2:AttributeStatement>  ]]>
         </Item>
         <Item Key="Saml11AttributeEncodingInfo">
-          <!\[CDATA\[            <saml:AttributeStatement xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion">
+          <![CDATA[            <saml:AttributeStatement xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion">
             <saml:Attribute AttributeName="ImmutableID"  AttributeNamespace="http://schemas.microsoft.com/LiveID/Federation/2008/05">
               <saml:AttributeValue/>
             </saml:Attribute>
             <saml:Attribute AttributeName="UPN" AttributeNamespace="http://schemas.xmlsoap.org/claims">
               <saml:AttributeValue/>
             </saml:Attribute>
-          </saml:AttributeStatement>  \]\]>
+          </saml:AttributeStatement>  ]]>
         </Item>
         <Item Key="PartnerEntity">https://www.contoso369b2c.com/wp-content/uploads/2015/01/metadata.xml</Item>
-        <Item Key="client\_id">customClientId</Item>
+        <Item Key="client_id">customClientId</Item>
       </Metadata>
       <OutputClaims>
         <OutputClaim ClaimTypeReferenceId="immutableId" PartnerClaimType="ImmutableID" />
